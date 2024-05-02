@@ -37,6 +37,7 @@ anchor_piaoWuTitle = cv2.imread('images\piaoWuTitle.png')
 # 点击刷新控件
 dianJiShuaXin = Widget(921-755,638-130,997-755,652-130)
 dianJiShuaXin.set_abs_pos(window.topleft)
+anchor_dianJiShuaXin = cv2.imread('images\dianJiShuaXin.png')
 
 # 目标时间
 target_date = datetime.datetime(year, month, day, hour, minutes, seconds)
@@ -54,8 +55,11 @@ while True:
     current_date = datetime.datetime.now()
     if current_date > target_date:
         # 执行某些操作
-        pyautogui.click(dianJiShuaXin.abs_center[0],dianJiShuaXin.abs_center[1])
+        while True:
+            pyautogui.click(dianJiShuaXin.abs_center[0],dianJiShuaXin.abs_center[1])
+            if not compare(anchor_dianJiShuaXin, dianJiShuaXin):
+                break
         print("完成操作")
         break
     else:
-        print(f"当前时间已经在{year}年{month}月{day}日{hour}点{minutes}分{seconds}秒之前！")
+        print(f"当前时间在{year}年{month}月{day}日{hour}点{minutes}分{seconds}秒之前！")
